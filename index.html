@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semana Europeia da Mobilidade</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; font-family: "Segoe UI", sans-serif; background: url('https://raw.githubusercontent.com/Bragatur/semana-mobilidade/refs/heads/main/European%20Mobility%20Week.png') no-repeat center center fixed; background-size: cover; color: white; overflow-x: hidden; }
+    .overlay { background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(3px); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; text-align: center; animation: fadeIn 1s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    main { max-width: 500px; width: 100%; padding: 30px 20px; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
+    h1 { margin: 0 0 10px 0; font-size: 2em; line-height: 1.2; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); opacity: 0; animation: fadeInElements 1s ease-in-out forwards; animation-delay: 0.2s; }
+    p { margin: 0 0 30px 0; font-size: 1.1em; line-height: 1.4; max-width: 100%; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); opacity: 0; animation: fadeInElements 1s ease-in-out forwards; animation-delay: 0.35s; }
+    .lang-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 25px; width: 100%; opacity: 0; animation: fadeInElements 1s ease-in-out forwards; animation-delay: 0.5s; }
+    .lang-buttons button { background: none; border: none; padding: 0; cursor: pointer; flex-shrink: 0; border-radius: 5px; overflow: hidden; width: 40px; height: 28px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease, box-shadow 0.3s ease; }
+    .lang-buttons button:hover, .lang-buttons button:focus { transform: scale(1.1); box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); outline: none; }
+    .lang-buttons button.selected { box-shadow: 0 0 0 2px white; transform: scale(1.15); }
+    .lang-buttons img { width: 100%; height: auto; display: block; user-select: none; pointer-events: none; }
+    .link-button { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; width: 100%; max-width: 300px; border: none; border-radius: 30px; background-color: #2575fc; color: white; font-size: 1em; font-weight: bold; text-decoration: none; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s; margin-bottom: 15px; cursor: pointer; opacity: 0; animation: fadeInElements 1s ease-in-out forwards; animation-delay: 1s; }
+    .link-button:hover, .link-button:focus { background-color: #1a5bbf; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); outline: none; }
+    .footer { font-size: 0.9em; color: #ccc; user-select: none; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); margin-top: 30px; margin-bottom: 10px; text-align: center; opacity: 0; animation: fadeInElements 1s ease-in-out forwards; animation-delay: 1.5s; }
+    @keyframes fadeInElements { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 600px) { main { padding: 20px 15px; max-width: 100%; border-radius: 15px; } h1 { font-size: 1.6em; } p { font-size: 1em; } .lang-buttons button { width: 36px; height: 25px; } .link-button { max-width: 100%; padding: 12px; font-size: 1em; } }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <main>
+      <div class="lang-buttons" role="group" aria-label="Selecione o idioma">
+        <button onclick="setLanguage('pt')" aria-label="Português"><img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/flags/4x3/pt.svg" alt="Português" /></button>
+        <button onclick="setLanguage('es')" aria-label="Español"><img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/flags/4x3/es.svg" alt="Español" /></button>
+        <button onclick="setLanguage('en')" aria-label="English"><img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/flags/4x3/gb.svg" alt="English" /></button>
+        <button onclick="setLanguage('fr')" aria-label="Français"><img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/flags/4x3/fr.svg" alt="Français" /></button>
+      </div>
+      <h1 id="title"></h1>
+      <p id="description"></p>
+
+      <!-- Botões sem links por agora -->
+      <button id="survey-satisfaction" class="link-button" type="button" aria-label="Roteiro Infantil">
+        <i class="fas fa-child"></i>
+      </button>
+
+      <button id="survey-environment" class="link-button" type="button" aria-label="Título por definir">
+        <i class="fas fa-route"></i>
+      </button>
+
+      <div class="footer">© Município de Braga</div>
+    </main>
+  </div>
+
+  <script>
+    const texts = {
+      pt: {
+        title: "Semana Europeia da Mobilidade",
+        description: "Iniciativa anual da União Europeia que promove deslocações sustentáveis, convida a caminhar, pedalar e utilizar transportes públicos.",
+        surveySatisfaction: "Roteiro Infantil",
+        surveyEnvironment: ""
+      },
+      es: {
+        title: "Semana Europea de la Movilidad",
+        description: "Iniciativa anual de la Unión Europea que promueve desplazamientos sostenibles, invita a caminar, pedalear y usar transporte público.",
+        surveySatisfaction: "Itinerario Infantil",
+        surveyEnvironment: ""
+      },
+      en: {
+        title: "European Mobility Week",
+        description: "Annual European Union initiative that promotes sustainable travel, inviting people to walk, cycle and use public transport.",
+        surveySatisfaction: "Kids’ Trail",
+        surveyEnvironment: ""
+      },
+      fr: {
+        title: "Semaine européenne de la mobilité",
+        description: "Initiative annuelle de l’Union européenne qui encourage des déplacements durables, elle invite à marcher, à faire du vélo et à utiliser les transports publics.",
+        surveySatisfaction: "Parcours Enfant",
+        surveyEnvironment: ""
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!texts[lang]) lang = "en";
+      const content = texts[lang];
+
+      document.getElementById("title").textContent = content.title;
+      document.getElementById("description").textContent = content.description;
+
+      const btn1 = document.getElementById("survey-satisfaction");
+      const btn2 = document.getElementById("survey-environment");
+
+      // Atualiza textos dos botões, mantém só o ícone quando o texto estiver vazio
+      btn1.innerHTML = content.surveySatisfaction
+        ? '<i class="fas fa-child"></i> ' + content.surveySatisfaction
+        : '<i class="fas fa-child"></i>';
+
+      btn2.innerHTML = content.surveyEnvironment
+        ? '<i class="fas fa-route"></i> ' + content.surveyEnvironment
+        : '<i class="fas fa-route"></i>';
+
+      btn1.setAttribute("aria-label", content.surveySatisfaction || "Roteiro Infantil");
+      btn2.setAttribute("aria-label", content.surveyEnvironment || "Título por definir");
+
+      document.documentElement.lang = lang;
+      document.title = content.title;
+
+      document.querySelectorAll(".lang-buttons button").forEach((b) => b.classList.remove("selected"));
+      const selectedBtn = [...document.querySelectorAll(".lang-buttons button")].find((b) => b.getAttribute("onclick").includes(`setLanguage('${lang}')`));
+      if (selectedBtn) selectedBtn.classList.add("selected");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const userLang = navigator.language.toLowerCase().split("-")[0];
+      const supported = Object.keys(texts);
+      setLanguage(supported.includes(userLang) ? userLang : "pt");
+    });
+  </script>
+</body>
+</html>
 
