@@ -36,17 +36,17 @@
       <h1 id="title"></h1>
       <p id="description"></p>
 
-      <!-- Botões com links -->
+      <!-- Botões reorganizados -->
+      <a id="regulamento" class="link-button" href="#" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-download"></i>
+      </a>
+
       <a id="survey-satisfaction" class="link-button" href="https://visitbraga.travel/wp-content/uploads/2025/07/Roteiro-Infantil-CMB-Visit-Braga.pdf" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-child"></i>
       </a>
 
       <a id="survey-environment" class="link-button" href="https://visitbraga.travel/wp-content/uploads/2025/07/Roteiro-Descobrir-Braga-em-3-Dias-Portugues.pdf" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-route"></i>
-      </a>
-
-      <a id="regulamento" class="link-button" href="#" target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-download"></i>
       </a>
 
       <div class="footer">© Município de Braga</div>
@@ -92,9 +92,9 @@
       document.getElementById("title").textContent = content.title;
       document.getElementById("description").textContent = content.description;
 
+      document.getElementById("regulamento").innerHTML = '<i class="fas fa-download"></i> ' + content.regulamento;
       document.getElementById("survey-satisfaction").innerHTML = '<i class="fas fa-child"></i> ' + content.surveySatisfaction;
       document.getElementById("survey-environment").innerHTML = '<i class="fas fa-route"></i> ' + content.surveyEnvironment;
-      document.getElementById("regulamento").innerHTML = '<i class="fas fa-download"></i> ' + content.regulamento;
 
       document.documentElement.lang = lang;
       document.title = content.title;
