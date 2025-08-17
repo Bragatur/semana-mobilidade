@@ -36,14 +36,18 @@
       <h1 id="title"></h1>
       <p id="description"></p>
 
-      <!-- Botões sem links por agora -->
-      <button id="survey-satisfaction" class="link-button" type="button" aria-label="Roteiro Infantil">
+      <!-- Botões com links -->
+      <a id="survey-satisfaction" class="link-button" href="https://visitbraga.travel/wp-content/uploads/2025/07/Roteiro-Infantil-CMB-Visit-Braga.pdf" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-child"></i>
-      </button>
+      </a>
 
-      <button id="survey-environment" class="link-button" type="button" aria-label="Título por definir">
+      <a id="survey-environment" class="link-button" href="https://visitbraga.travel/wp-content/uploads/2025/07/Roteiro-Descobrir-Braga-em-3-Dias-Portugues.pdf" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-route"></i>
-      </button>
+      </a>
+
+      <a id="regulamento" class="link-button" href="#" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-download"></i>
+      </a>
 
       <div class="footer">© Município de Braga</div>
     </main>
@@ -54,26 +58,30 @@
       pt: {
         title: "Semana Europeia da Mobilidade",
         description: "Iniciativa anual da União Europeia que promove deslocações sustentáveis, convida a caminhar, pedalar e utilizar transportes públicos.",
-        surveySatisfaction: "Roteiro Infantil",
-        surveyEnvironment: ""
+        surveySatisfaction: "Roteiro Infantojuvenil “A Cidade do Bracvs”",
+        surveyEnvironment: "Roteiro Descobrir Braga em 3 Dias",
+        regulamento: "Regulamento"
       },
       es: {
         title: "Semana Europea de la Movilidad",
         description: "Iniciativa anual de la Unión Europea que promueve desplazamientos sostenibles, invita a caminar, pedalear y usar transporte público.",
-        surveySatisfaction: "Itinerario Infantil",
-        surveyEnvironment: ""
+        surveySatisfaction: "Itinerario Infantil y Juvenil “La Ciudad de Bracvs”",
+        surveyEnvironment: "Itinerario Descubrir Braga en 3 Días",
+        regulamento: "Reglamento"
       },
       en: {
         title: "European Mobility Week",
         description: "Annual European Union initiative that promotes sustainable travel, inviting people to walk, cycle and use public transport.",
-        surveySatisfaction: "Kids’ Trail",
-        surveyEnvironment: ""
+        surveySatisfaction: "Youth Trail “The City of Bracvs”",
+        surveyEnvironment: "Discover Braga in 3 Days Itinerary",
+        regulamento: "Regulation"
       },
       fr: {
         title: "Semaine européenne de la mobilité",
         description: "Initiative annuelle de l’Union européenne qui encourage des déplacements durables, elle invite à marcher, à faire du vélo et à utiliser les transports publics.",
-        surveySatisfaction: "Parcours Enfant",
-        surveyEnvironment: ""
+        surveySatisfaction: "Parcours Enfants et Jeunes “La Ville de Bracvs”",
+        surveyEnvironment: "Parcours Découvrir Braga en 3 Jours",
+        regulamento: "Règlement"
       }
     };
 
@@ -84,20 +92,9 @@
       document.getElementById("title").textContent = content.title;
       document.getElementById("description").textContent = content.description;
 
-      const btn1 = document.getElementById("survey-satisfaction");
-      const btn2 = document.getElementById("survey-environment");
-
-      // Atualiza textos dos botões, mantém só o ícone quando o texto estiver vazio
-      btn1.innerHTML = content.surveySatisfaction
-        ? '<i class="fas fa-child"></i> ' + content.surveySatisfaction
-        : '<i class="fas fa-child"></i>';
-
-      btn2.innerHTML = content.surveyEnvironment
-        ? '<i class="fas fa-route"></i> ' + content.surveyEnvironment
-        : '<i class="fas fa-route"></i>';
-
-      btn1.setAttribute("aria-label", content.surveySatisfaction || "Roteiro Infantil");
-      btn2.setAttribute("aria-label", content.surveyEnvironment || "Título por definir");
+      document.getElementById("survey-satisfaction").innerHTML = '<i class="fas fa-child"></i> ' + content.surveySatisfaction;
+      document.getElementById("survey-environment").innerHTML = '<i class="fas fa-route"></i> ' + content.surveyEnvironment;
+      document.getElementById("regulamento").innerHTML = '<i class="fas fa-download"></i> ' + content.regulamento;
 
       document.documentElement.lang = lang;
       document.title = content.title;
@@ -115,4 +112,3 @@
   </script>
 </body>
 </html>
-
