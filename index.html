@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <title>Semana Europeia da Mobilidade</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     html, body {
       margin: 0; padding: 0; height: 100%;
       font-family: "Segoe UI", sans-serif;
-      background: url('https://raw.githubusercontent.com/Bragatur/semana-mobilidade/refs/heads/main/European%20Mobility%20Week.png') no-repeat center center fixed;
+      background: url('European Mobility Week.png') no-repeat center center fixed;
       background-size: cover;
       color: white;
       overflow-x: hidden;
@@ -78,6 +79,9 @@
       h1 { font-size: 1.6em; }
       p { font-size: 1em; }
       .link-button { font-size: 1em; padding: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
   </style>
 </head>
